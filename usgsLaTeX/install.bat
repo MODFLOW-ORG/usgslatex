@@ -38,8 +38,13 @@ cd %TEXLOCAL%\dvips
 updmap-sys --enable Map=funivers.map
 updmap-sys
 
+echo Installing Times New Roman font...
+cd %TEXLOCAL%\dvips
+updmap-sys --enable Map=timesnew.map
+updmap-sys
+
 echo Rebuild ls-R filename databases used by TeX...
-mktexlsr --verbose
+mktexlsr
 
 echo Return to %CURRENT%
 cd %CURRENT%
