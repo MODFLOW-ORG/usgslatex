@@ -17,7 +17,7 @@
     These installation installation instructions may work for other
     TeX distributions but this has not been tested.
 
-2. Clone the [`usgslatex`](https://github.com/MODFLOW-USGS/usgslatex)
+2. Clone the [`usgslatex`](https://github.com/MODFLOW-ORG/usgslatex)
     repository to a location of your choice on your computer. On
     `Windows`, the `usgslatex` repository should be cloned to your `C:`
     drive for the installation file to work correctly.
@@ -37,13 +37,24 @@
         `/usr/local/texlive/2021/texmf-var/fonts/`) for a specific
         TeX Live distribution.
 
-    3. To install the Univers Condensed font library and USGS style
-        files on `Windows`, run `install.bat` in the `usgsLaTeX`
-        subdirectory in your local clone of the `usgslatex` repository
-        as an Adminstrator by right-clicking on the file and selecting
-        "Run as administration". Similar to installing the Univers Condensed 
-        font library andUSGS style files on `MacOS` and `Linux`, `install.bat` 
-        is run asan Administrator so that system files can be modified.
+    2. To install the Univers Condensed and Times New Roman font
+        libraries and USGS style files on `Windows`, run `install.bat`
+        in the `usgsLaTeX` subdirectory of your local clone of the
+        `usgslatex` repository. You can run it by double-clicking the
+        file or by calling it from a terminal; `.bat` files run from
+        both `cmd` and `PowerShell`, so a separate PowerShell script is
+        not needed.
+
+        `install.bat` automatically chooses where to install: if
+        `TEXMFLOCAL` (the local texmf tree reported by
+        `kpsewhich -var-value TEXMFLOCAL`) is writable, it installs
+        system-wide using `updmap-sys`; otherwise it falls back to your
+        per-user tree `TEXMFHOME` using `updmap-user`, which never
+        requires Administrator privileges. As a result you normally do
+        not need to elevate. If you specifically want a system-wide
+        installation on a machine where `TEXMFLOCAL` is owned by an
+        administrator, right-click `install.bat` and select
+        "Run as administrator".
 
 4. If the USGS style files have been correctly installed you should see
     something like the following on the last three lines of the output
@@ -54,7 +65,7 @@
         ```              
             Evaluate if USGS style files are available
             Location of USGS LaTeX style files:  
-            /Users/jdhughes/Library/texmf/tex/latex/usgs/usgsreporta.sty
+            /Users/<username>/Library/texmf/tex/latex/usgs/usgsreporta.sty
         ```
         
     2.  On `Windows` you should see something like
@@ -64,6 +75,11 @@
             Location of USGS LaTeX style files:  
             c:/texlive/texmf-local/tex/latex/usgs/usgsreporta.sty
         ```
+
+        If `install.bat` performed a per-user installation (because
+        `TEXMFLOCAL` was not writable), the reported path will instead
+        be under your home texmf tree, for example
+        `C:/Users/<username>/texmf/tex/latex/usgs/usgsreporta.sty`.
 
 5. Test the Installation of the Univers Condensed font library
     installation can be tested using the `testunivers.tex` TeXfile in
